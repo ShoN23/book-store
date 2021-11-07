@@ -21,18 +21,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'yf4wk1i8uko8b1ji*ukh8zr)9*$_@1ljufx5%%*^87hyo76kjo'
+SECRET_KEY = 'yf4wk1i8uko8b1ji*ukh8zr)9*$_@1ljufx5%%*^87hyo76kjo'
 
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = env('DEBUG')
+DEBUG = True
+#DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(",")
+ALLOWED_HOSTS = ['book-store-byshon.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -133,9 +133,11 @@ CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Braintree settings
-BRAINTREE_MERCHANT_ID = env('BRAINTREE_MERCHANT_ID') # Merchant ID
-BRAINTREE_PUBLIC_KEY = env('BRAINTREE_PUBLIC_KEY')   # Public Key
-BRAINTREE_PRIVATE_KEY = env('BRAINTREE_PRIVATE_KEY')  # Private key
+
+
+BRAINTREE_MERCHANT_ID = '928qx23gs542snsx' # Merchant ID
+BRAINTREE_PUBLIC_KEY='bfkztvt6hv4fzhtr'
+BRAINTREE_PRIVATE_KEY='55abdb5f90b863800e09d190b148f3eb'
 
 import braintree
 
@@ -156,9 +158,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # AWS config
-AWS_S3_ACCESS_KEY_ID = env('AWS_S3_ACCESS_KEY_ID')
-AWS_S3_SECRET_ACCESS_KEY = env('AWS_S3_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_ACCESS_KEY_ID='AKIAVHTMTU2EM7JWIVH5'
+AWS_S3_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='bookstore-byshon'
+
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
