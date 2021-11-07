@@ -1,2 +1,2 @@
-web: gunicorn myshop.myshop.settings.wsgi:application --log-file - --log-level debug
+web: gunicorn myshop.myshop.settings.wsgi
 python manage.py collectstatic --noinput
