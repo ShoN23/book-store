@@ -32,7 +32,7 @@ SECRET_KEY = 'yf4wk1i8uko8b1ji*ukh8zr)9*$_@1ljufx5%%*^87hyo76kjo'
 DEBUG = True
 #DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['book-store-byshon.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['booklive-shon.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
