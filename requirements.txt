@@ -24,7 +24,7 @@ django-storages==1.12.3
 flower==0.9.3
 fonttools==4.28.0
 gobject==0.1.0
-gunicorn==20.0.4
+gunicorn
 html5lib==1.1
 idna==3.3
 jmespath==0.10.0
