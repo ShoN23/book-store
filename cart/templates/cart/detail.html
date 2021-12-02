@@ -1,14 +1,16 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}
 Your shopping cart
 {% endblock %}
 
 {% block content %}
+
 <section class="py-1">
   <div class="container px-8 px-lg-5 my-9 pd-3">
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <h1>Your shopping cart</h1>
+      
+      <h1>Your shopping cart </h1>
       <table class="cart">
         <thead>
           <tr>
@@ -21,6 +23,7 @@ Your shopping cart
           </tr>
         </thead>
         <tbody>
+
           {% for item in cart %}
           {% with product=item.product %}
           <tr>
@@ -32,7 +35,7 @@ Your shopping cart
             </td>
             <td>{{ product.name }}</td>
             <td>
-              <form action="{% url "cart:cart_add" product.id %}" method="post">
+              <form action="{% url 'cart:cart_add' product.id %}" method="POST">
                 {{ item.update_quantity_form.quantity }}
                 {{ item.update_quantity_form.override }}
                 <input type="submit" value="Update">
@@ -40,7 +43,7 @@ Your shopping cart
               </form>
             </td>
             <td>
-              <form action="{% url "cart:cart_remove" product.id %}" method="post">
+              <form action="{% url 'cart:cart_remove' product.id %}" method="post">
                 <input type="submit" value="Remove">
                 {% csrf_token %}
               </form>
@@ -50,6 +53,7 @@ Your shopping cart
           </tr>
           {% endwith %}
           {% endfor %}
+
           <tr class="total">
             <td>Total</td>
             <td colspan="4"></td>
@@ -61,6 +65,28 @@ Your shopping cart
       <div class='p-0'>
         <a href="{% url "shop:product_list" %}" class="btn btn-outline-primary">Continue shopping</a>
         <a href="{% url "orders:order_create" %}" class="btn btn-outline-warning">Checkout</a>
+        {% comment %} {% else %}
+        <div class="container-fluid mt-100 m-3">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5>Cart</h5>
+                </div>
+                <div class="card-body cart">
+                  <div class="col-sm-12 empty-cart-cls text-center"> 
+                  <img src="data:image/png;base64,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" 
+                  width="130" height="130" class="img-fluid mb-4 mr-3">
+                    <h3><strong>Your Cart is Empty</strong></h3>
+                    <h4>Add something to make me happy :)</h4> 
+                    <a href="{% url "shop:product_list" %}" class="btn btn-outline-primary">Continue shopping</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %} {% endcomment %}
       </div>
     </div>
 </section>

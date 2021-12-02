@@ -1,8 +1,13 @@
 @import url(//fonts.googleapis.com/css?family=Ubuntu);
-html {
-    min-height: 100%;
-    position: relative;
+
+/* Navbar deacorations */
+
+.navbar-color {
+    background-color: rgba(255, 102, 0, 1);
 }
+
+
+/* Body decorations */
 
 body {
     margin: 0;
@@ -10,14 +15,8 @@ body {
     font-family: helvetica, sans-serif;
 }
 
-.site-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 6px 2px;
-    background: #32383e;
-}
+
+/* Text and link decorations */
 
 h1,
 h2,
@@ -31,26 +30,11 @@ h6 {
 
 a {
     text-decoration: none;
-    color: #5993bb;
+    color: #f8f8f8;
 }
 
 a:hover {
     color: #77b6e2;
-}
-
-a.button,
-input[type="submit"] {
-    color: #fff;
-    background: #5993bb;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 14px;
-    border: 0;
-}
-
-a.button.light {
-    color: #666;
-    background: #ededed;
 }
 
 .text-left {
@@ -59,6 +43,41 @@ a.button.light {
 
 .text-right {
     text-align: right;
+}
+
+
+/* Card decorations */
+
+.card-image {
+    width: 345px;
+    height: 350px;
+}
+
+.card input {
+    background-color: snow;
+}
+
+.card h1,
+
+/* btn decorations */
+
+.btn:hover {
+    color: white;
+}
+
+a.button,
+input[type="submit"] {
+    color: #fff;
+    background: #03852a;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 0;
+}
+
+a.button.light {
+    color: rgb(243, 243, 243);
+    background: #ededed;
 }
 
 table {
@@ -85,7 +104,7 @@ tbody tr.subtotal {
 
 thead th,
 tbody tr.total {
-    background: #5993bb;
+    background: #161F6D;
     color: #fff;
     font-weight: bold;
 }
@@ -124,8 +143,8 @@ form p input {
     margin-bottom: 10px;
     padding: 10px 12px;
     border: 0;
-    background: #efefef;
-    color: #666;
+    background: #bdbdbd;
+    color: rgb(0, 0, 0);
     border-radius: 4px;
 }
 
@@ -142,6 +161,14 @@ ul.errorlist {
     padding: 10px 100px;
     font-size: 18px;
     overflow: auto;
+}
+
+.header-img {
+    width: 100%;
+    height: 400px;
+    background-image: url("/static/img/bookstore.jpeg");
+    background-size: cover;
+    /* position: relative; */
 }
 
 #subheader {
@@ -191,7 +218,7 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-    background: #5993bb;
+    background: #5EBEC4;
     border-radius: 4px;
 }
 
@@ -215,7 +242,7 @@ ul.errorlist {
 }
 
 .product-list .item img {
-    width: 100%;
+    width: 50%;
     margin-bottom: 8px;
 }
 
@@ -342,13 +369,68 @@ ul.errorlist {
 
 form div.field {
     font-size: 13px;
-    color: #666;
+    color: white;
     width: 300px;
-    height: 22px;
+    height: 33px;
     margin-bottom: 10px;
     padding: 6px 12px;
     border: 0;
-    background: #efefef;
-    color: #666;
+    background: snow;
     border-radius: 4px;
+}
+
+body {
+    background: #f2f2f2;
+}
+
+.payment {
+    border: 1px solid #f2f2f2;
+    height: 280px;
+    border-radius: 20px;
+    background: #fff;
+}
+
+.payment_header {
+    background: rgba(255, 102, 0, 1);
+    padding: 20px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.check {
+    margin: 0px auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: #fff;
+    text-align: center;
+}
+
+.check i {
+    vertical-align: middle;
+    line-height: 50px;
+    font-size: 30px;
+}
+
+.content {
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 25px;
+    padding-top: 25px;
+}
+
+.content a {
+    width: 200px;
+    height: 35px;
+    color: #fff;
+    border-radius: 30px;
+    padding: 5px 10px;
+    background: rgba(255, 102, 0, 1);
+    transition: all ease-in-out 0.3s;
+}
+
+.content a:hover {
+    text-decoration: none;
+    background: #000;
 }

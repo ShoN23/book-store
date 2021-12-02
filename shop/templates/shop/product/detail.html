@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}
@@ -10,8 +10,14 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{% if product.image %}{{ product.image.url }}{% else %}
-    {% static "img/no_image.png" %}{% endif %}"></div>
+            <div class="col-md-6">
+                <img class="mb-5 mb-md-0" src="
+                {% if product.image %}
+                    {{ product.image.url }}
+                {% else %}
+                    {% static "img/no_image.png" %}
+                {% endif %}">
+            </div>
             <div class="col-md-6">
                 <div class="small mb-1"><a class="text-dark text-decoration-none"
                         href="{{ product.category.get_absolute_url }}">Category:
@@ -23,7 +29,7 @@
                     <span>$40.00</span>
                 </div>
                 <p class="lead">{{ product.description|linebreaks }}</p>
-                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                <form action="{% url "cart:cart_add" product.id %}" method="POST">
                     {{ cart_product_form }}
                     {% csrf_token %}
                     <input type="submit" value="Add to cart">

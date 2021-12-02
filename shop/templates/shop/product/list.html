@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}
@@ -7,24 +7,23 @@
 
 {% block content %}
 <!-- Section-->
-<section class="py-5">
-  <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-      <!-- Here is product output starts -->
-
-      {% for product in products %}
-      <div class="col mb-5">
-        <div class="card h-100">
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow" style="width: 22rem;">
+          {% for product in products %}
           <!-- Sale badge-->
           <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
             Sale
           </div>
           <!-- Product image-->
-
-          <img class="card-img-top"
-            src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" />
-
+          <div class="card-body bordered">
+            <a href="{{ product.get_absolute_url }}">
+              <img class="card-image img-fluid bordered"
+                src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" />
+            </a>          
+          </div>
           <!-- Product details-->
           <div class="card-body p-4">
             <div class="text-center">
@@ -40,25 +39,23 @@
                 <div class="bi-star-fill"></div>
               </div>
               <!-- Product price-->
-              <span class="text-muted text-decoration-line-through">{{ product.price }}</span>
-              {{ product.price }}
+              {% comment %} <span class="text-muted text-decoration-line-through">{{product.price }}</span> {% endcomment %}
+              {{ product.price }}$
             </div>
             {{ product.description|slice:55 }}...
           </div>
-          
           <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+          <div class="card-footer p-8 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
               <a href="{{ product.get_absolute_url }}">
-                <input class="btn btn-outline-success flex-shrink-0" type="submit" value="View"></a>
+                <button type="button" class="btn btn-outline-success btn-sm mr-3" value="Add to card">View</button>
+              </a>
             </div>
           </div>
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
-
-
     </div>
   </div>
-</section>
+</div>
 {% endblock %}

@@ -37,7 +37,6 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('name',)
-        index_together = (('id', 'slug'),)
 
     def __str__(self):
         return self.name

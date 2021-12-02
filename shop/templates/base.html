@@ -4,13 +4,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>{% block title %}My shop{% endblock %}</title> 
     {% comment %} Google icons {% endcomment %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Bootstrap icons-->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -19,19 +21,21 @@
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/"><img src="https://img.icons8.com/ios/50/000000/book.png" />BookStore</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
+        <div class="container px-4 px-lg-3">
+            <a class="navbar-brand" href="{% url 'shop:product_list' %}">BookStore</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <ul class="navbar-nav me-auto mr-auto">
+                    <li class="nav-item active"><a class="nav-link" aria-current="page" href="{% url 'shop:product_list' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'shop:about' %}">About</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li {% if not category %}class="selected" {% endif %}><a class="dropdown-item"
                                     href="{% url "shop:product_list" %}">All Products</a></li>
@@ -46,42 +50,38 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex float-right">
-                    <button class="btn btn-outline-dark" type="submit">
+                <form class="d-flex">
+                    <a class="btn btn-warning" href="{% url "cart:cart_detail" %}" role="button">
                         <i class="bi-cart-fill me-1"></i>
                         {% with total_items=cart|length %}
                         {% if total_items > 0 %}
-                        Cart:
-                        <a href="{% url "cart:cart_detail" %}">
+                            Cart:
                             {{ total_items }} item{{ total_items|pluralize }},
                             ${{ cart.get_total_price }}
-                        </a>
+                
                         {% else %}
                         Cart is empty
                         {% endif %}
                         {% endwith %}
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>        
+                    </a>
                 </form>
             </div>
         </div>
     </nav>
     <!-- Header-->
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-            </div>
-        </div>
-    </header>
+    <header class="header-img">
+        {% comment %} <div class=>
+          <h1 class="display-3">Hello, world!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+        </div>{% endcomment %}
+    </header> 
     {% block content %}
     {% endblock %}
     <!-- Footer-->
-    <footer class="py-5 bg-dark site-footer">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
-        </div>
+    <footer class="relative-bottom mt-5 py-5 navbar-color">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -94,8 +94,8 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    {% comment %} <script src="js/scripts.js"></script> {% endcomment %}
+   
+    
 </body>
 
 </html>

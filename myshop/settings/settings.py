@@ -14,26 +14,26 @@ import os
 import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yf4wk1i8uko8b1ji*ukh8zr)9*$_@1ljufx5%%*^87hyo76kjo'
+#SECRET_KEY = 'yf4wk1i8uko8b1ji*ukh8zr)9*$_@1ljufx5%%*^87hyo76kjo'
 
-# env = environ.Env()
-# environ.Env.read_env()
+env = environ.Env()
+environ.Env.read_env()
 
-# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = env('DEBUG')
+#DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['booklive-shon.herokuapp.com', '127.0.0.1']
-
+# ALLOWED_HOSTS = ['booklive-shon.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -81,6 +81,8 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
 
@@ -89,8 +91,12 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bookstore',
+        'USER': 'postgres',
+        'PASSWORD': env('DATA_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT':'5433'
     }
 }
 
@@ -128,10 +134,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-
-CART_SESSION_ID = 'cart'
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Braintree settings
@@ -150,31 +152,6 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PRIVATE_KEY
 )
 
-STATIC_URL = '/staticfiles/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# Boto3 config
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-# AWS config
-AWS_S3_ACCESS_KEY_ID='AKIAVHTMTU2EM7JWIVH5'
-AWS_S3_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME='bookstore-byshon'
-
-AWS_DEFAULT_ACL = 'public-read'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# A path prefix that will ve prepended to all uploads
-AWS_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-
-# Django Static files directory
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
-# s3 public media settings
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

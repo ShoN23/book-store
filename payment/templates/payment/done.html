@@ -1,11 +1,30 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Payment successful{% endblock %}
 
 {% block content %}
 <div class="container">
-  <h1>Your payment was successful</h1>
-  <p class='text-success'>Your payment has been processed successfully.</p>
+   <div class="row">
+      <div class="col-md-6 mx-auto mt-5">
+         <div class="payment">
+            <div class="payment_header">
+               <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+            </div>
+            <div class="content">
+               <h1>Payment Success !</h1>
+               <p>Your payment has been processed successfully.</p>
+               <a href="/">Go to Home</a>
+            </div>
+            
+         </div>
+      </div>
+   </div>
 </div>
+{% comment %} <div class="container mt-4"> 
+  <h1 class="alert-heading text-center">Your payment was successful</h4>
+  <div class="alert alert-success" role="alert">
+    <p class='text-success text-center'>Your payment has been processed successfully.</p>
+  </div>
+</div> {% endcomment %}
   
 {% endblock %}
